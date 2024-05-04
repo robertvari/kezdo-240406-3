@@ -1,9 +1,9 @@
 class Person:
     def __init__(self, name, phone, ballance):
-        # instance attributes (public)
+        # private access level
         self.__name = name
 
-        # protected access level
+        # private access level
         self.__phone = phone
 
         # private access level
