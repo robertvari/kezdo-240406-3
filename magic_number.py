@@ -3,6 +3,7 @@ import os, random
 class Game:
     def __init__(self):
         self.__clear_screen()
+        self.__intro()
 
     def __clear_screen(self):
         os.system("cls")  # mac, linux = clear
@@ -17,10 +18,44 @@ class Game:
         print("-"*50)
 
 class Player:
-    pass
+    def __init__(self):
+        self.__name = None
+        self.__credits = 100
+        self.__my_number = "0"
+    
+    def think_a_number(self):
+        self.__my_number = input("What is your guess? ")
+
+    def get_player_name(self):
+        self.__name = input("What is your name?")
+
+    def report(self):
+        print(f"Name: {self.__name}")
+        print(f"Credits: {self.__credits}")
+
+    @property
+    def my_number(self):
+        return self.__my_number
+
+    def __str__(self):
+        return self.__name
 
 class Computer:
-    pass
+    def __init__(self):
+        self.__min_number = 0
+        self.__max_number = 10
+        self.__my_number = "0"
+
+    @property
+    def my_number(self):
+        return self.__my_number
+
+    def think_a_number(self):
+        self.__my_number = str(random.randint(self.__min_number, self.__max_number))
 
 
-Game()
+# Game()
+
+player = Player()
+player.get_player_name()
+player.report()
