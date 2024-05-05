@@ -43,6 +43,10 @@ class PlayerBASE:
     def hand_value(self):
         return sum([i.value for i in self.__hand])
 
+    @property
+    def hand(self):
+        return ", ".join([card.name for card in self.__hand])
+
     @staticmethod
     def get_random_name():
         first_names = ["Marnie", "Johnathan", "Mahnoor", "Hassan", "Alissa", "Millie", "Qasim", "Damon", "Shreya", "Carly"]
@@ -59,6 +63,12 @@ class Player(PlayerBASE):
         result = input("What is your name? ")  # Get player name
         self._set_name(result)  # call BASE._set_name() to set private __name
 
+    def draw(self):
+        print(f"This is your turn {self.__name}!")
+
+        while self.__playing:
+            print(self.hand)
+
 class AIPlayer(PlayerBASE):
     pass
 
@@ -73,9 +83,3 @@ if __name__ == "__main__":
 
     player.init_hand(deck)
     ai_player.init_hand(deck)
-
-    player.draw(deck)
-    ai_player.draw(deck)
-
-    player.report()
-    ai_player.report()
