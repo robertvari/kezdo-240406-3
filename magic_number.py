@@ -2,8 +2,12 @@ import os, random
 
 class Game:
     def __init__(self):
+        # First attributes
         self.__player = Player()
         self.__computer = Computer()
+        self.__try_counter = 3
+
+        # Then method calls
         self.__clear_screen()
         self.__intro()
 
@@ -14,7 +18,41 @@ class Game:
             self.__exit_game()
 
     def __start_game(self):
-        print("TODO Start game...")
+        self.__try_counter = 3
+
+        self.__computer.think_a_number()
+        self.__player.think_a_number()
+
+        while self.__player.my_number != self.__computer.my_number:
+            self.__try_counter -= 1
+
+            if self.__try_counter == 0:
+                break
+
+            print(f"Wrong guess! You have {self.__try_counter} tries left. Try again.")
+            self.__player.think_a_number()
+        
+        # End game conditions
+        if self.__player.my_number == self.__computer.my_number:
+            print(f"You win! {self.__computer.my_number} was my number :)")
+            # CREDITS += 10
+            self.__player.give_credits(10)
+            print(f"{self.__player} has {self.__player.credits} credits.")
+        else:
+            print(f"You lost the game :( My number was {self.__computer.my_number}")
+            # CREDITS -= 10
+            self.__player.take_credits(10)
+            print(f"{self.__player} has {self.__player.credits} credits.")
+
+            if self.__player.credits <= 0:
+                print(f"I'm sorry {self.__player}. You lost all your credits. Game Over:(")
+                self.__exit_game()
+
+        # Ask for start the game
+        if self.__player.ask_for_start_game(new_game=False):
+            self.__start_game()
+        else:
+            self.__exit_game()
 
     def __exit_game(self):
         self.__clear_screen()
@@ -48,6 +86,12 @@ class Player:
     @property
     def my_number(self):
         return self.__my_number
+
+    def give_credits(self, credits):
+        self.__credits += credits
+
+    def take_credits(self, credits):
+        self.__credits -= credits
 
     def think_a_number(self):
         self.__my_number = input("What is your guess? ")
