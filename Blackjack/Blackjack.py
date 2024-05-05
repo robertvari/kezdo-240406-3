@@ -34,6 +34,7 @@ class Blackjack:
         # Player's rounds
         for player in self.__players:
             player.draw(self.__deck)
+            time.sleep(2)
         
         # Player's report
         for player in self.__players:
