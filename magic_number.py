@@ -7,6 +7,20 @@ class Game:
         self.__clear_screen()
         self.__intro()
 
+        # todo ask for start the game
+        if self.__player.ask_for_start_game(new_game=True):
+            self.__start_game()
+        else:
+            self.__exit_game()
+
+    def __start_game(self):
+        print("TODO Start game...")
+
+    def __exit_game(self):
+        self.__clear_screen()
+        print(f"Maybe next time {self.__player}. Have a nice day!")
+        exit()
+
     def __clear_screen(self):
         os.system("cls")  # mac, linux = clear
 
@@ -31,6 +45,10 @@ class Player:
     def credits(self):
         return self.__credits
 
+    @property
+    def my_number(self):
+        return self.__my_number
+
     def think_a_number(self):
         self.__my_number = input("What is your guess? ")
 
@@ -41,9 +59,14 @@ class Player:
         print(f"Name: {self.__name}")
         print(f"Credits: {self.__credits}")
 
-    @property
-    def my_number(self):
-        return self.__my_number
+    def ask_for_start_game(self, new_game=False):
+        if new_game:
+            question = "Do you want to start the game?"
+        else:
+            question = "Do you want to play again?"
+
+        user_input = input(f"{question} (y/n) ")
+        return user_input.lower() == "y"
 
     def __str__(self):
         return self.__name
