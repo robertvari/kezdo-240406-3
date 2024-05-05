@@ -49,12 +49,15 @@ class PlayerBASE:
         last_names =  ["Roy", "Aguirre", "Sandoval", "Rogers", "Cole", "Matthams", "Allen", "Stokes", "Deleon", "Hampton"]
         return f"{random.choice(first_names)} {random.choice(last_names)}"
 
+    def __str__(self):
+        return self.__name
+
 
 class Player(PlayerBASE):
     def _create(self):
         super()._create()  # call to BASE._create() and get random name and credits
-        # result = input("What is your name? ")  # Get player name
-        self._set_name("Robert")  # call BASE._set_name() to set private __name
+        result = input("What is your name? ")  # Get player name
+        self._set_name(result)  # call BASE._set_name() to set private __name
 
 class AIPlayer(PlayerBASE):
     pass
