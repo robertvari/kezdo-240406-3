@@ -18,6 +18,13 @@ class PlayerBASE:
     def _set_name(self, new_name):
         self.__name = new_name
 
+    def init_hand(self, deck):
+        self.__hand.clear()
+        self.__playing = True
+
+        self.__hand.append(deck.draw())
+        self.__hand.append(deck.draw())
+
     @staticmethod
     def get_random_name():
         first_names = ["Marnie", "Johnathan", "Mahnoor", "Hassan", "Alissa", "Millie", "Qasim", "Damon", "Shreya", "Carly"]
@@ -28,15 +35,22 @@ class PlayerBASE:
 class Player(PlayerBASE):
     def _create(self):
         super()._create()  # call to BASE._create() and get random name and credits
-        result = input("What is your name? ")  # Get player name
-        self._set_name(result)  # call BASE._set_name() to set private __name
+        # result = input("What is your name? ")  # Get player name
+        self._set_name("Robert")  # call BASE._set_name() to set private __name
 
 class AIPlayer(PlayerBASE):
     pass
 
 
 if __name__ == "__main__":
+    from cards import Deck
+
+    deck = Deck()
+
     player = Player()
     ai_player = AIPlayer()
+
+    player.init_hand(deck)
+    ai_player.init_hand(deck)
 
     pass

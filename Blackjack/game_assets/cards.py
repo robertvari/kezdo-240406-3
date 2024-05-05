@@ -51,6 +51,9 @@ class Deck:
 
         random.shuffle(self.__cards)
 
+    def draw(self):
+        return self.__cards.pop(0)
+
     def reset(self):
         self.__create()
 
