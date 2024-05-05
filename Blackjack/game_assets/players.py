@@ -67,7 +67,6 @@ class PlayerBASE:
     def __str__(self):
         return self.__name
 
-
 class Player(PlayerBASE):
     def _create(self):
         super()._create()  # call to BASE._create() and get random name and credits
