@@ -25,6 +25,19 @@ class PlayerBASE:
         self.__hand.append(deck.draw())
         self.__hand.append(deck.draw())
 
+    def draw(self, deck):
+        # Player must draw if hand value < 16 hand value > 21
+        while self.__playing:
+            pass
+            self.__playing = False
+
+    def report(self):
+        print(f"{self.__name}, Hand: {self.__hand} Hand Value: {self.hand_value}")
+
+    @property
+    def hand_value(self):
+        return sum([i.value for i in self.__hand])
+
     @staticmethod
     def get_random_name():
         first_names = ["Marnie", "Johnathan", "Mahnoor", "Hassan", "Alissa", "Millie", "Qasim", "Damon", "Shreya", "Carly"]
@@ -53,4 +66,8 @@ if __name__ == "__main__":
     player.init_hand(deck)
     ai_player.init_hand(deck)
 
-    pass
+    player.draw(deck)
+    ai_player.draw(deck)
+
+    print(player.report())
+    print(ai_player.report())
