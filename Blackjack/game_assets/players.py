@@ -26,6 +26,9 @@ class PlayerBASE:
     def _set_name(self, new_name):
         self.__name = new_name
 
+    def _add_card_to_hand(self, new_card):
+        self.__hand.append(new_card)
+
     def init_hand(self, deck):
         self.__hand.clear()
         self.__playing = True
@@ -74,7 +77,7 @@ class Player(PlayerBASE):
     def draw(self, deck):
         print(f"This is your turn {self.__name}!")
 
-        while self._playing:
+        while self.playing:
             print(f"Your hand: {self.hand}")
             print(f"Your hand value: {self.hand_value}")
 
@@ -86,7 +89,7 @@ class Player(PlayerBASE):
                 self._add_card_to_hand(new_card)
                 time.sleep(3)
             else:
-                self._playing = False
+                self.playing = False
 
 class AIPlayer(PlayerBASE):
     pass
