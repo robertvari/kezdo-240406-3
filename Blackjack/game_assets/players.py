@@ -11,6 +11,14 @@ class PlayerBASE:
         # Then method calls
         self._create()
 
+    @property
+    def playing(self):
+        return self.__playing
+    
+    @playing.setter
+    def playing(self, new_playing):
+        self.__playing = new_playing
+
     def _create(self):
         self.__credits = random.randint(10, 100)
         self.__name = self.get_random_name()
@@ -63,11 +71,22 @@ class Player(PlayerBASE):
         result = input("What is your name? ")  # Get player name
         self._set_name(result)  # call BASE._set_name() to set private __name
 
-    def draw(self):
+    def draw(self, deck):
         print(f"This is your turn {self.__name}!")
 
-        while self.__playing:
-            print(self.hand)
+        while self._playing:
+            print(f"Your hand: {self.hand}")
+            print(f"Your hand value: {self.hand_value}")
+
+            response = input("Do you want to draw a card? (y/n)")
+
+            if response.lower() == "y":
+                new_card = deck.draw()
+                print(f"You new card: {new_card}")
+                self._add_card_to_hand(new_card)
+                time.sleep(3)
+            else:
+                self._playing = False
 
 class AIPlayer(PlayerBASE):
     pass
