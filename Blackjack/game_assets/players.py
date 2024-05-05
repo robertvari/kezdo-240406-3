@@ -75,7 +75,7 @@ class Player(PlayerBASE):
         self._set_name(result)  # call BASE._set_name() to set private __name
 
     def draw(self, deck):
-        print(f"This is your turn {self.__name}!")
+        print(f"This is your turn {self}!")
 
         while self.playing:
             print(f"Your hand: {self.hand}")
