@@ -74,5 +74,5 @@ if __name__ == "__main__":
     player.draw(deck)
     ai_player.draw(deck)
 
-    print(player.report())
-    print(ai_player.report())
+    player.report()
+    ai_player.report()
