@@ -1,4 +1,4 @@
-import random
+import random, time
 
 class PlayerBASE:
     def __init__(self):
@@ -28,8 +28,13 @@ class PlayerBASE:
     def draw(self, deck):
         # Player must draw if hand value < 16 hand value > 21
         while self.__playing:
-            pass
-            self.__playing = False
+            if self.hand_value < 19:
+                print(f"{self.__name} draws a card...")
+                time.sleep(2)
+                self.__hand.append(deck.draw())
+            else:
+                print(f"{self.__name} finishes.")
+                self.__playing = False
 
     def report(self):
         print(f"{self.__name}, Hand: {self.__hand} Hand Value: {self.hand_value}")
