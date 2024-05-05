@@ -1,4 +1,4 @@
-import os, random
+import os, random, time
 
 class Game:
     def __init__(self):
@@ -18,6 +18,8 @@ class Game:
             self.__exit_game()
 
     def __start_game(self):
+        self.__clear_screen()
+
         self.__try_counter = 3
 
         self.__computer.think_a_number()
@@ -46,6 +48,7 @@ class Game:
 
             if self.__player.credits <= 0:
                 print(f"I'm sorry {self.__player}. You lost all your credits. Game Over:(")
+                time.sleep(5)
                 self.__exit_game()
 
         # Ask for start the game
@@ -76,7 +79,7 @@ class Game:
 class Player:
     def __init__(self):
         self.__name = None
-        self.__credits = 100
+        self.__credits = 10
         self.__my_number = "0"
     
     @property
