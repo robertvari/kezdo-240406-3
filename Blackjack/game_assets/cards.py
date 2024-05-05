@@ -14,11 +14,29 @@ class Card:
         return self.__name
     
 
-if __name__ == "__main__":
-    my_card_1 = Card("Spade King", 10)
-    my_card_2 = Card("Club 3", 3)
-    my_card_3 = Card("Spade Ace", 11)
+class Deck:
+    def __init__(self):
+        self.__cards = []
+        self.__create()
 
-    my_hand = [my_card_1, my_card_2, my_card_3]
-    hand_value = sum([i.value for i in my_hand])
-    print(my_hand, hand_value)
+    def __create(self):
+        cards = [
+            ["2", 2],
+            ["3", 3],
+            ["4", 4],
+            ["5", 5],
+            ["6", 6],
+            ["7", 7],
+            ["8", 8],
+            ["9", 9],
+            ["10", 10],
+            ["King", 10],
+            ["Queen", 10],
+            ["Jack", 10],
+            ["Ace", 11]
+        ]
+
+        suits = ["Heart", "Club", "Diamond", "Spade"]
+
+if __name__ == "__main__":
+    deck = Deck()
